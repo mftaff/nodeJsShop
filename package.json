@@ -18,7 +18,8 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mongodb": "^3.2.5",
+    "mongoose": "^5.7.6",
     "mysql2": "^1.6.5",
-    "sequelize": "^5.8.6"
+    "sequelize": "^5.21.1"
   }
 }
