@@ -17,7 +17,8 @@ exports.postAddProduct = (req, res, next) => {
     title: title,
     price: price,
     description: description,
-    imageUrl: imageUrl
+    imageUrl: imageUrl,
+    userId: req.user
   });
   product
     .save()
@@ -85,8 +86,7 @@ exports.postDeleteProduct = (req, res, next) => {
 }
 
 exports.getProducts = (req, res, next) => {
-  Product
-    .find()
+  Product.find()
     .then(products => {
       res.render('admin/products', {
         pageTitle: 'Admin Products',

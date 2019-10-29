@@ -19,9 +19,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  User.findById('5dacd15cab57cc0fecb776e9')
+  User.findById('5daf0de6c16ea33330ba2550')
     .then(user => {
-      req.user = new User(user.name, user.email, user.cart, user._id);
+      req.user = user;
       next();
     })
     .catch(err => console.log(err));
@@ -36,6 +36,18 @@ mongoose
   .connect(
     'mongodb+srv://meir:qQY2ByJrwvU4hLLm@cluster0-zc7pz.mongodb.net/shop?retryWrites=true&w=majority'
   ).then(result => {
+    User.findOne().then(user => {
+      if (!user) {
+        const user = new User({
+          name: 'Meyer',
+          email: 'meyertaffelwebsolutions@gmail.com',
+          cart: {
+            items: []
+          }
+        });
+        user.save();
+      }
+    });
     app.listen(3000);
   }).catch(err => {
     console.log(err)
